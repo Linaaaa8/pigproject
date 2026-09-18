@@ -1,10 +1,23 @@
 .container { padding: 24rpx; }
 .stats { display: flex; gap: 20rpx; margin-bottom: 24rpx; }
-.stat { flex: 1; background: #ffffff; border-radius: 16rpx; padding: 30rpx; text-align: center; }
-.stat-num { font-size: 48rpx; font-weight: 500; color: #185FA5; }
-.stat-label { font-size: 24rpx; color: #999999; margin-top: 8rpx; }
+.stat {
+  flex: 1;
+  background: #ffffff;
+  border-radius: 24rpx;
+  padding: 32rpx;
+  text-align: center;
+  box-shadow: 0 6rpx 18rpx rgba(59, 47, 42, 0.04);
+}
+.stat-num { font-size: 52rpx; font-weight: 600; color: #EE7B54; }
+.stat-label { font-size: 24rpx; color: #A08C82; margin-top: 8rpx; }
 
-.card { background: #ffffff; border-radius: 16rpx; padding: 24rpx; margin-bottom: 24rpx; }
-.card-title { font-size: 30rpx; font-weight: 500; margin-bottom: 16rpx; }
-.ddl-item { padding: 12rpx 0; border-bottom: 1rpx solid #f0f0f0; }
+.card {
+  background: #ffffff;
+  border-radius: 24rpx;
+  padding: 24rpx 28rpx;
+  margin-bottom: 24rpx;
+  box-shadow: 0 6rpx 18rpx rgba(59, 47, 42, 0.04);
+}
+.card-title { font-size: 30rpx; font-weight: 600; color: #3B2F2A; margin-bottom: 16rpx; }
+.ddl-item { padding: 14rpx 0; border-bottom: 1rpx solid #F1E8E0; color: #3B2F2A; }
 .ddl-item:last-child { border-bottom: none; }

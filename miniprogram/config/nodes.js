@@ -76,13 +76,25 @@ const NODES = [
   }
 ];
 
-// 按 group 分组，供首页分区渲染
+// 分组主题色（温暖养成风）：主色 + 浅色底
+const GROUP_COLORS = {
+  '作息': { color: '#E89B3C', light: '#FBF0DC' },
+  '饮食': { color: '#EE7B54', light: '#FCE9E0' },
+  '身体': { color: '#E8708A', light: '#FBE4EA' },
+  '运动': { color: '#5EAE7E', light: '#E4F2E9' },
+  '穿搭': { color: '#8E7CC3', light: '#EDE8F7' },
+  '事件': { color: '#5B8FD6', light: '#E5EDF8' },
+  '自定义': { color: '#9A8B84', light: '#F0EBE6' }
+};
+
+// 按 group 分组，供首页分区渲染（附带主题色）
 function getGroupedNodes() {
   const groups = [];
   const map = {};
   NODES.forEach((n) => {
     if (!map[n.group]) {
-      map[n.group] = { group: n.group, nodes: [] };
+      const c = GROUP_COLORS[n.group] || { color: '#9A8B84', light: '#F0EBE6' };
+      map[n.group] = { group: n.group, color: c.color, light: c.light, nodes: [] };
       groups.push(map[n.group]);
     }
     map[n.group].nodes.push(n);

@@ -9,10 +9,14 @@
   </view>
 
   <view wx:for="{{groups}}" wx:key="group" class="group">
-    <view class="group-title">{{item.group}}</view>
+    <view class="group-title">
+      <view class="dot" style="background:{{item.color}}"></view>
+      {{item.group}}
+    </view>
     <view class="chips">
       <view wx:for="{{item.nodes}}" wx:for-item="node" wx:key="id"
             class="chip {{recorded[node.id] ? 'done' : ''}}"
+            style="{{recorded[node.id] ? 'background:' + item.color + ';color:#ffffff;border-color:' + item.color + ';' : 'background:' + item.light + ';color:' + item.color + ';border-color:' + item.color + ';'}}"
             bindtap="togglePanel" data-id="{{node.id}}">
         <text>{{recorded[node.id] ? '✓ ' : ''}}{{node.name}}</text>
         <text class="chip-state" wx:if="{{recorded[node.id]}}">{{recorded[node.id].option}}</text>
@@ -61,7 +65,7 @@
           <view class="field">截止 {{ddlDue || '选择日期'}} ▾</view>
         </picker>
         <view class="frow">
-          <switch checked="{{ddlRemind}}" bindchange="onDdlRemind" color="#185FA5" />
+          <switch checked="{{ddlRemind}}" bindchange="onDdlRemind" color="#EE7B54" />
           <text class="muted">到点提醒（订阅消息）</text>
         </view>
       </view>
