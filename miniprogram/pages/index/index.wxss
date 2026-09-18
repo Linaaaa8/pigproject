@@ -1,69 +1,85 @@
-.container { padding: 24rpx 24rpx 80rpx; }
+.container { padding: 24rpx 24rpx 60rpx; }
 
-/* 顶部日期栏 */
+/* 成长卡 */
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #ffffff;
+  border-radius: 28rpx;
+  padding: 32rpx;
+  margin-bottom: 24rpx;
+  box-shadow: 0 8rpx 24rpx rgba(59, 47, 42, 0.05);
+}
+.hero-title { display: flex; align-items: center; gap: 14rpx; margin-bottom: 24rpx; }
+.hero-rank { font-size: 36rpx; font-weight: 600; color: #3B2F2A; }
+.hero-lv {
+  font-size: 20rpx;
+  color: #EE7B54;
+  background: #FCE9E0;
+  padding: 4rpx 16rpx;
+  border-radius: 20rpx;
+  font-weight: 600;
+}
+.hero-stats { display: flex; gap: 52rpx; }
+.hero-num { font-size: 42rpx; font-weight: 600; color: #3B2F2A; line-height: 1.1; }
+.hero-label { font-size: 22rpx; color: #A08C82; margin-top: 6rpx; }
+.hero-pig { font-size: 96rpx; line-height: 1; }
+
+/* 日期栏 */
 .datebar {
   display: flex;
   align-items: center;
   justify-content: space-between;
   background: #ffffff;
   border-radius: 28rpx;
-  padding: 28rpx 24rpx;
+  padding: 20rpx 24rpx;
   margin-bottom: 32rpx;
   box-shadow: 0 8rpx 24rpx rgba(59, 47, 42, 0.05);
 }
 .arrow {
-  width: 64rpx;
-  height: 64rpx;
+  width: 60rpx;
+  height: 60rpx;
   border-radius: 50%;
   background: #F6EEE6;
   color: #EE7B54;
-  font-size: 40rpx;
+  font-size: 38rpx;
   display: flex;
   align-items: center;
   justify-content: center;
   line-height: 1;
 }
 .dateinfo { text-align: center; }
-.datetext { font-size: 34rpx; font-weight: 600; color: #3B2F2A; }
-.dateinfo .muted { margin-top: 6rpx; }
+.datetext { font-size: 32rpx; font-weight: 600; color: #3B2F2A; }
 
 /* 分组 */
-.group { margin-bottom: 36rpx; }
+.group { margin-bottom: 32rpx; }
 .group-title {
   display: flex;
   align-items: center;
-  gap: 12rpx;
-  font-size: 26rpx;
+  gap: 10rpx;
+  font-size: 27rpx;
   font-weight: 600;
   color: #3B2F2A;
-  margin: 0 8rpx 16rpx;
+  margin: 0 4rpx 16rpx;
 }
-.dot { width: 16rpx; height: 16rpx; border-radius: 50%; }
+.group-emoji { font-size: 30rpx; }
 
-/* 打卡按钮 */
-.chips { display: flex; flex-wrap: wrap; gap: 18rpx; }
-.chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 8rpx;
-  border-radius: 44rpx;
-  padding: 18rpx 30rpx;
-  font-size: 28rpx;
-  font-weight: 500;
-  border: 2rpx solid;
-  box-shadow: 0 4rpx 12rpx rgba(59, 47, 42, 0.04);
+/* 网格卡片（4 列） */
+.grid { display: flex; flex-wrap: wrap; gap: 16rpx; }
+.cell {
+  width: calc((100% - 48rpx) / 4);
+  background: #ffffff;
+  border-radius: 22rpx;
+  padding: 26rpx 8rpx 22rpx;
+  text-align: center;
+  box-shadow: 0 4rpx 14rpx rgba(59, 47, 42, 0.04);
+  box-sizing: border-box;
 }
-.chip.done { font-weight: 600; }
-.chip-state {
-  font-size: 22rpx;
-  opacity: 0.85;
-  max-width: 180rpx;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.chip-time { font-size: 22rpx; opacity: 0.7; }
-.caret { font-size: 20rpx; opacity: 0.6; }
+.cell-emoji { font-size: 52rpx; line-height: 1.2; }
+.cell-name { font-size: 25rpx; font-weight: 500; color: #3B2F2A; margin-top: 10rpx; }
+.cell-state { font-size: 20rpx; color: #B8A79D; margin-top: 6rpx; }
+.cell-time { font-size: 20rpx; color: #A08C82; margin-top: 2rpx; }
 
 /* 展开面板 */
 .panel {
@@ -131,3 +147,18 @@
   font-weight: 600;
   box-shadow: 0 8rpx 20rpx rgba(238, 123, 84, 0.28);
 }
+
+/* 底部统计横幅 */
+.banner {
+  display: flex;
+  align-items: center;
+  gap: 28rpx;
+  background: #FDF3D8;
+  border-radius: 24rpx;
+  padding: 30rpx 36rpx;
+  margin-top: 8rpx;
+}
+.banner-num { font-size: 60rpx; font-weight: 600; color: #E8A23D; line-height: 1; }
+.banner-unit { font-size: 24rpx; font-weight: 400; }
+.banner-title { font-size: 28rpx; font-weight: 600; color: #6B5330; }
+.banner-sub { font-size: 22rpx; color: #A98F5F; margin-top: 6rpx; }

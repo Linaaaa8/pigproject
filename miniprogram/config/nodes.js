@@ -10,25 +10,25 @@
 const NODES = [
   // —— 作息 ——
   {
-    id: 'wake', name: '训醒未', type: 'status', group: '作息',
+    id: 'wake', name: '训醒未', emoji: '🌞', type: 'status', group: '作息',
     options: ['自然醒', '闹钟醒', '赖床', '半夜醒过', '训得唔好'],
     defaultOption: '自然醒'
   },
   {
-    id: 'sleep', name: '训着未', type: 'status', group: '作息',
+    id: 'sleep', name: '训着未', emoji: '🌙', type: 'status', group: '作息',
     options: ['好快训着', '一般', '训唔着', '半夜醒', '未训'],
     defaultOption: '好快训着'
   },
 
   // —— 饮食 ——
   {
-    id: 'eat', name: '食咗未', type: 'count', group: '饮食',
+    id: 'eat', name: '食咗未', emoji: '🍚', type: 'count', group: '饮食',
     options: ['早餐', '午餐', '晚餐', '加餐', '食咗少少', '未食'],
     defaultOption: '晚餐',
     notePlaceholder: '备注：食咗咩？'
   },
   {
-    id: 'drink', name: '饮咗未', type: 'count', group: '饮食',
+    id: 'drink', name: '饮咗未', emoji: '🥤', type: 'count', group: '饮食',
     options: ['1 杯', '2 杯', '3 杯', '4 杯+', '未饮'],
     defaultOption: '1 杯',
     notePlaceholder: '备注：饮咗咩？'
@@ -36,23 +36,23 @@ const NODES = [
 
   // —— 身体 ——
   {
-    id: 'poop', name: '屙咗未', type: 'status', group: '身体',
+    id: 'poop', name: '屙咗未', emoji: '🚽', type: 'status', group: '身体',
     options: ['顺畅', '一般', '便秘', '肚屙', '未屙'],
     defaultOption: '顺畅'
   },
   {
-    id: 'period', name: '来M未', type: 'period', group: '身体'
+    id: 'period', name: '来M未', emoji: '🌷', type: 'period', group: '身体'
   },
 
   // —— 运动 ——
   {
-    id: 'baduanjin', name: '八段锦', type: 'count', group: '运动',
+    id: 'baduanjin', name: '八段锦', emoji: '🧘', type: 'count', group: '运动',
     options: ['1 遍', '2 遍', '3 遍', '未做'],
     defaultOption: '1 遍',
     notePlaceholder: '备注'
   },
   {
-    id: 'move', name: '郁下', type: 'count', group: '运动',
+    id: 'move', name: '郁下', emoji: '🏃', type: 'count', group: '运动',
     options: ['散步', '跑步', '拉伸', '其他运动', '未郁'],
     defaultOption: '散步',
     notePlaceholder: '备注：做咗咩运动？'
@@ -60,31 +60,31 @@ const NODES = [
 
   // —— 穿搭 ——
   {
-    id: 'outfit', name: '几靓呀', type: 'photo', group: '穿搭',
+    id: 'outfit', name: '几靓呀', emoji: '👗', type: 'photo', group: '穿搭',
     notePlaceholder: '备注：今日着咗咩风格？'
   },
 
   // —— 事件 ——
   {
-    id: 'ddl', name: 'DDL了', type: 'event', group: '事件',
+    id: 'ddl', name: 'DDL了', emoji: '📌', type: 'event', group: '事件',
     contentPlaceholder: '事件：要交咩？'
   },
 
   // —— 自定义 ——
   {
-    id: 'custom', name: '仲有咩', type: 'custom', group: '自定义'
+    id: 'custom', name: '仲有咩', emoji: '✏️', type: 'custom', group: '自定义'
   }
 ];
 
-// 分组主题色（温暖养成风）：主色 + 浅色底
+// 分组主题色（温暖养成风）：主色 + 浅色底 + 组图标
 const GROUP_COLORS = {
-  '作息': { color: '#E89B3C', light: '#FBF0DC' },
-  '饮食': { color: '#EE7B54', light: '#FCE9E0' },
-  '身体': { color: '#E8708A', light: '#FBE4EA' },
-  '运动': { color: '#5EAE7E', light: '#E4F2E9' },
-  '穿搭': { color: '#8E7CC3', light: '#EDE8F7' },
-  '事件': { color: '#5B8FD6', light: '#E5EDF8' },
-  '自定义': { color: '#9A8B84', light: '#F0EBE6' }
+  '作息': { color: '#E89B3C', light: '#FBF0DC', emoji: '🌤' },
+  '饮食': { color: '#EE7B54', light: '#FCE9E0', emoji: '🍚' },
+  '身体': { color: '#E8708A', light: '#FBE4EA', emoji: '💗' },
+  '运动': { color: '#5EAE7E', light: '#E4F2E9', emoji: '🏃' },
+  '穿搭': { color: '#8E7CC3', light: '#EDE8F7', emoji: '👗' },
+  '事件': { color: '#5B8FD6', light: '#E5EDF8', emoji: '📌' },
+  '自定义': { color: '#9A8B84', light: '#F0EBE6', emoji: '✏️' }
 };
 
 // 按 group 分组，供首页分区渲染（附带主题色）
@@ -93,8 +93,8 @@ function getGroupedNodes() {
   const map = {};
   NODES.forEach((n) => {
     if (!map[n.group]) {
-      const c = GROUP_COLORS[n.group] || { color: '#9A8B84', light: '#F0EBE6' };
-      map[n.group] = { group: n.group, color: c.color, light: c.light, nodes: [] };
+      const c = GROUP_COLORS[n.group] || { color: '#9A8B84', light: '#F0EBE6', emoji: '✏️' };
+      map[n.group] = { group: n.group, color: c.color, light: c.light, emoji: c.emoji, nodes: [] };
       groups.push(map[n.group]);
     }
     map[n.group].nodes.push(n);

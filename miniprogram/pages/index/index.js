@@ -5,12 +5,24 @@ function pad(n) { return n < 10 ? '0' + n : '' + n; }
 function fmtDate(d) { return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()); }
 function fmtTime(d) { return pad(d.getHours()) + ':' + pad(d.getMinutes()); }
 
+// 「养猪」称号：按累计记录数升级
+function pigRank(total) {
+  if (total >= 500) return { title: '猪王', level: 4 };
+  if (total >= 200) return { title: '大肥猪', level: 3 };
+  if (total >= 50) return { title: '小肥猪', level: 2 };
+  return { title: '猪崽', level: 1 };
+}
+
 Page({
   data: {
     groups: [],
     date: '',
     dateLabel: '',
     todayCount: 0,
+    totalCount: 0,
+    consecutive: 0,
+    pigTitle: '猪崽',
+    pigLevel: 1,
     activeId: '',
     activeNode: null,
     selOption: '',
@@ -37,6 +49,7 @@ Page({
     });
     this.login();
     this.loadToday();
+    this.loadSummary();
   },
 
   buildLabel(d) {
@@ -75,6 +88,21 @@ Page({
       this.setData({ recorded, todayCount: res.list.length });
     } catch (e) {
       console.error('加载今日记录失败', e);
+    }
+  },
+
+  async loadSummary() {
+    try {
+      const res = await cloud.getSummary();
+      const rank = pigRank(res.totalCount);
+      this.setData({
+        totalCount: res.totalCount,
+        consecutive: res.consecutive,
+        pigTitle: rank.title,
+        pigLevel: rank.level
+      });
+    } catch (e) {
+      console.error('加载汇总失败', e);
     }
   },
 
@@ -186,6 +214,7 @@ Page({
       wx.showToast({ title: '记低咗', icon: 'success' });
       this.setData({ activeId: '', activeNode: null });
       this.loadToday();
+      this.loadSummary();
     } catch (e) {
       console.error(e);
       wx.showToast({ title: '失败，重试下', icon: 'none' });
