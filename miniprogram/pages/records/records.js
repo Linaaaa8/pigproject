@@ -1,4 +1,5 @@
 const { NODES } = require('../../config/nodes');
+const cloud = require('../../utils/cloud');
 
 Page({
   data: {
@@ -12,18 +13,17 @@ Page({
   async load() {
     this.setData({ loading: true });
     try {
-      // TODO: 调用云函数按 openid + 时间倒序拉取 events，前端按 nodeId 映射节点名称
-      const db = wx.cloud.database();
-      const res = await db.collection('events').orderBy('createdAt', 'desc').limit(100).get();
+      const res = await cloud.getRecords({});
       const nameMap = {};
       NODES.forEach((n) => { nameMap[n.id] = n.name; });
-      const records = res.data.map((r) => ({
+      const records = res.list.map((r) => ({
         ...r,
         nodeName: nameMap[r.nodeId] || r.nodeId
       }));
       this.setData({ records });
     } catch (e) {
       console.error(e);
+      wx.showToast({ title: '加载失败', icon: 'none' });
     }
     this.setData({ loading: false });
   }

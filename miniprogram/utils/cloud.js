@@ -27,5 +27,13 @@ module.exports = {
   // 保存 DDL 事件提醒
   saveDdl(payload) {
     return call('saveDdl', payload);
+  },
+  // 拉取记录（可按日期过滤）
+  getRecords(payload) {
+    return call('getRecords', payload);
+  },
+  // 汇总统计（总记录/连续打卡/来M周期/DDL）
+  getSummary() {
+    return call('getSummary');
   }
 };

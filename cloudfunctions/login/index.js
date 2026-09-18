@@ -8,7 +8,7 @@ exports.main = async () => {
   const exist = await users.where({ openid: OPENID }).get();
   if (exist.data.length === 0) {
     await users.add({
-      data: { openid: OPENID, coins: 0, createdAt: db.serverDate() }
+      data: { _openid: OPENID, openid: OPENID, coins: 0, createdAt: db.serverDate() }
     });
   }
   return { openid: OPENID };

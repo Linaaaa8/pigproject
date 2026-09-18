@@ -24,6 +24,7 @@ exports.main = async (event) => {
 
   const res = await periods.add({
     data: {
+      _openid: OPENID,
       openid: OPENID,
       startDate,
       endDate: endDate || null,

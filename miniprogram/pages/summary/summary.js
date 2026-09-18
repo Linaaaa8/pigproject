@@ -1,3 +1,5 @@
+const cloud = require('../../utils/cloud');
+
 Page({
   data: {
     totalCount: 0,
@@ -11,19 +13,16 @@ Page({
 
   async load() {
     try {
-      const db = wx.cloud.database();
-      // TODO: 完善统计——总记录数、连续打卡天数、来M周期与预测、DDL 列表
-      const ev = await db.collection('events').count();
-      this.setData({ totalCount: ev.total });
-
-      const ddls = await db.collection('ddls')
-        .where({ status: 'pending' })
-        .orderBy('dueAt', 'asc')
-        .limit(20)
-        .get();
-      this.setData({ ddlList: ddls.data });
+      const res = await cloud.getSummary();
+      this.setData({
+        totalCount: res.totalCount,
+        consecutive: res.consecutive,
+        periodInfo: res.periodInfo + (res.nextPredict ? ' · ' + res.nextPredict : ''),
+        ddlList: res.ddlList
+      });
     } catch (e) {
       console.error(e);
+      wx.showToast({ title: '加载失败', icon: 'none' });
     }
   }
 });

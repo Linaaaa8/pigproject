@@ -7,6 +7,7 @@ exports.main = async (event) => {
   const { content, dueAt, remindAt } = event;
   const res = await db.collection('ddls').add({
     data: {
+      _openid: OPENID,
       openid: OPENID,
       content: content || '',
       dueAt: dueAt || '',

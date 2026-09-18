@@ -7,6 +7,7 @@ exports.main = async (event) => {
   const { nodeId, option, time, note, images, date } = event;
   const res = await db.collection('events').add({
     data: {
+      _openid: OPENID,
       openid: OPENID,
       nodeId,
       option: option || '',

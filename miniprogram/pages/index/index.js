@@ -64,8 +64,18 @@ Page({
   },
 
   async loadToday() {
-    // TODO: 从云数据库按 date + openid 拉取今日记录，填充 recorded 与 todayCount
-    this.setData({ todayCount: Object.keys(this.data.recorded).length });
+    try {
+      const res = await cloud.getRecords({ date: this.data.date });
+      const recorded = {};
+      res.list.forEach((item) => {
+        if (!recorded[item.nodeId]) {
+          recorded[item.nodeId] = { option: item.option, time: item.time };
+        }
+      });
+      this.setData({ recorded, todayCount: res.list.length });
+    } catch (e) {
+      console.error('加载今日记录失败', e);
+    }
   },
 
   togglePanel(e) {
