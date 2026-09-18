@@ -1,0 +1,19 @@
+<view class="container">
+  <view wx:if="{{loading}}" class="muted">加载中…</view>
+  <view wx:elif="{{records.length === 0}}" class="empty">
+    <view class="empty-title">仲未记录</view>
+    <view class="muted">去首页记低你今日做咗咩啦</view>
+  </view>
+  <view wx:else class="timeline">
+    <view wx:for="{{records}}" wx:key="_id" class="item">
+      <view class="item-time">{{item.date}} {{item.time}}</view>
+      <view class="item-body">
+        <view class="item-title">{{item.nodeName}} · {{item.option}}</view>
+        <view wx:if="{{item.note}}" class="item-note">{{item.note}}</view>
+        <view wx:if="{{item.images && item.images.length}}" class="item-imgs">
+          <image wx:for="{{item.images}}" wx:for-item="img" wx:key="*this" src="{{img}}" mode="aspectFill" class="item-img" />
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

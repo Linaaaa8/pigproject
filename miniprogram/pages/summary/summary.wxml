@@ -1,0 +1,26 @@
+<view class="container">
+  <view class="stats">
+    <view class="stat">
+      <view class="stat-num">{{totalCount}}</view>
+      <view class="stat-label">总记录</view>
+    </view>
+    <view class="stat">
+      <view class="stat-num">{{consecutive}}</view>
+      <view class="stat-label">连续天数</view>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="card-title">来M 周期</view>
+    <view class="muted">{{periodInfo || '暂无记录'}}</view>
+  </view>
+
+  <view class="card">
+    <view class="card-title">进行中 DDL</view>
+    <view wx:if="{{ddlList.length === 0}}" class="muted">暂无</view>
+    <view wx:for="{{ddlList}}" wx:key="_id" class="ddl-item">
+      <view>{{item.content}}</view>
+      <view class="muted">截止 {{item.dueAt}}</view>
+    </view>
+  </view>
+</view>

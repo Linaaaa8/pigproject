@@ -1,0 +1,54 @@
+.container { padding: 24rpx; padding-bottom: 60rpx; }
+
+.datebar {
+  display: flex; align-items: center; justify-content: space-between;
+  background: #ffffff; border-radius: 16rpx; padding: 20rpx 24rpx; margin-bottom: 24rpx;
+}
+.arrow { font-size: 44rpx; color: #185FA5; padding: 0 16rpx; line-height: 1; }
+.dateinfo { text-align: center; }
+.datetext { font-size: 30rpx; font-weight: 500; }
+
+.group { margin-bottom: 28rpx; }
+.group-title { font-size: 24rpx; color: #999999; margin: 0 8rpx 12rpx; }
+
+.chips { display: flex; flex-wrap: wrap; gap: 16rpx; }
+.chip {
+  display: inline-flex; align-items: center; gap: 10rpx;
+  background: #ffffff; border: 1rpx solid #e0e0e0; border-radius: 24rpx;
+  padding: 16rpx 24rpx; font-size: 28rpx;
+}
+.chip.done { background: #E6F1FB; border-color: #85B7EB; color: #0C447C; }
+.chip-state { font-size: 22rpx; opacity: 0.8; max-width: 180rpx; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.chip-time { font-size: 22rpx; opacity: 0.6; }
+.caret { font-size: 22rpx; opacity: 0.5; }
+
+.panel { background: #f0f2f5; border-radius: 16rpx; padding: 20rpx; margin-top: 16rpx; }
+.opts { display: flex; flex-wrap: wrap; gap: 12rpx; margin-bottom: 16rpx; }
+.opt {
+  background: #ffffff; border: 1rpx solid #e0e0e0; border-radius: 16rpx;
+  padding: 12rpx 24rpx; font-size: 26rpx;
+}
+.opt.sel { background: #E6F1FB; border-color: #378ADD; color: #0C447C; }
+
+.frow { display: flex; gap: 16rpx; align-items: center; }
+.field {
+  background: #ffffff; border: 1rpx solid #e0e0e0; border-radius: 16rpx;
+  padding: 14rpx 20rpx; font-size: 26rpx;
+}
+.field.input { flex: 1; min-width: 0; }
+
+.photo-panel .imgs { display: flex; flex-wrap: wrap; gap: 16rpx; margin-bottom: 16rpx; }
+.img-wrap { width: 120rpx; height: 120rpx; border-radius: 12rpx; overflow: hidden; }
+.img-wrap image { width: 100%; height: 100%; }
+.upload {
+  width: 120rpx; height: 120rpx; border-radius: 12rpx; border: 1rpx dashed #999999;
+  color: #999999; font-size: 24rpx; display: flex; align-items: center; justify-content: center;
+  text-align: center; line-height: 1.4;
+}
+
+.period-panel, .event-panel { display: flex; flex-direction: column; gap: 16rpx; }
+
+.save-btn {
+  margin-top: 20rpx; text-align: center; background: #185FA5; color: #ffffff;
+  border-radius: 16rpx; padding: 20rpx; font-size: 30rpx;
+}

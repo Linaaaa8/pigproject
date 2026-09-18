@@ -1,0 +1,22 @@
+page {
+  background: #f6f6f6;
+  color: #2c2c2a;
+  font-size: 28rpx;
+  line-height: 1.6;
+}
+
+.container {
+  padding: 24rpx;
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  margin-bottom: 24rpx;
+}
+
+.muted {
+  color: #999999;
+  font-size: 24rpx;
+}

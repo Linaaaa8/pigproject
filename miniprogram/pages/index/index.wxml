@@ -1,0 +1,72 @@
+<view class="container">
+  <view class="datebar">
+    <view class="arrow" bindtap="prevDay">‹</view>
+    <view class="dateinfo">
+      <view class="datetext">{{dateLabel}}</view>
+      <view class="muted">今日喂咗自己 {{todayCount}} 次</view>
+    </view>
+    <view class="arrow" bindtap="nextDay">›</view>
+  </view>
+
+  <view wx:for="{{groups}}" wx:key="group" class="group">
+    <view class="group-title">{{item.group}}</view>
+    <view class="chips">
+      <view wx:for="{{item.nodes}}" wx:for-item="node" wx:key="id"
+            class="chip {{recorded[node.id] ? 'done' : ''}}"
+            bindtap="togglePanel" data-id="{{node.id}}">
+        <text>{{recorded[node.id] ? '✓ ' : ''}}{{node.name}}</text>
+        <text class="chip-state" wx:if="{{recorded[node.id]}}">{{recorded[node.id].option}}</text>
+        <text class="chip-time" wx:if="{{recorded[node.id] && recorded[node.id].time}}">{{recorded[node.id].time}}</text>
+        <text class="caret">▾</text>
+      </view>
+    </view>
+
+    <view wx:if="{{activeNode && activeNode.group === item.group}}" class="panel">
+      <view wx:if="{{activeNode.type === 'status' || activeNode.type === 'count'}}" class="opts">
+        <view wx:for="{{activeNode.options}}" wx:for-item="opt" wx:key="*this"
+              class="opt {{selOption === opt ? 'sel' : ''}}"
+              bindtap="onOptionTap" data-opt="{{opt}}">{{opt}}</view>
+      </view>
+
+      <view wx:if="{{activeNode.type === 'status' || activeNode.type === 'count'}}" class="frow">
+        <picker mode="time" value="{{selTime}}" bindchange="onTimeChange">
+          <view class="field">时间 {{selTime}} ▾</view>
+        </picker>
+        <input wx:if="{{activeNode.type === 'count'}}" class="field input"
+               placeholder="{{activeNode.notePlaceholder}}" value="{{selNote}}" bindinput="onNoteInput" />
+      </view>
+
+      <view wx:if="{{activeNode.type === 'photo'}}" class="photo-panel">
+        <view class="imgs">
+          <view wx:for="{{selImages}}" wx:key="*this" class="img-wrap">
+            <image src="{{item}}" mode="aspectFill" bindtap="previewImage" data-idx="{{index}}" />
+          </view>
+          <view class="upload" bindtap="chooseImage">＋<br />上传</view>
+        </view>
+        <input class="field input" placeholder="{{activeNode.notePlaceholder}}" value="{{selNote}}" bindinput="onNoteInput" />
+      </view>
+
+      <view wx:if="{{activeNode.type === 'period'}}" class="period-panel">
+        <picker mode="date" value="{{periodStart}}" bindchange="onPeriodStart">
+          <view class="field">开始日 {{periodStart}} ▾</view>
+        </picker>
+        <picker mode="date" value="{{periodEnd}}" bindchange="onPeriodEnd">
+          <view class="field">结束日 {{periodEnd || '未结束'}} ▾</view>
+        </picker>
+      </view>
+
+      <view wx:if="{{activeNode.type === 'event'}}" class="event-panel">
+        <input class="field input" placeholder="{{activeNode.contentPlaceholder}}" value="{{ddlContent}}" bindinput="onDdlContent" />
+        <picker mode="date" value="{{ddlDue}}" bindchange="onDdlDue">
+          <view class="field">截止 {{ddlDue || '选择日期'}} ▾</view>
+        </picker>
+        <view class="frow">
+          <switch checked="{{ddlRemind}}" bindchange="onDdlRemind" color="#185FA5" />
+          <text class="muted">到点提醒（订阅消息）</text>
+        </view>
+      </view>
+
+      <view class="save-btn" bindtap="save">保存</view>
+    </view>
+  </view>
+</view>

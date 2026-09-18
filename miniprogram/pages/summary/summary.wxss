@@ -1,0 +1,10 @@
+.container { padding: 24rpx; }
+.stats { display: flex; gap: 20rpx; margin-bottom: 24rpx; }
+.stat { flex: 1; background: #ffffff; border-radius: 16rpx; padding: 30rpx; text-align: center; }
+.stat-num { font-size: 48rpx; font-weight: 500; color: #185FA5; }
+.stat-label { font-size: 24rpx; color: #999999; margin-top: 8rpx; }
+
+.card { background: #ffffff; border-radius: 16rpx; padding: 24rpx; margin-bottom: 24rpx; }
+.card-title { font-size: 30rpx; font-weight: 500; margin-bottom: 16rpx; }
+.ddl-item { padding: 12rpx 0; border-bottom: 1rpx solid #f0f0f0; }
+.ddl-item:last-child { border-bottom: none; }
