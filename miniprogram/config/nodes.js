@@ -51,6 +51,10 @@ const NODES = [
     id: 'measure', name: '度一下', emoji: '📏', type: 'measure', group: '身体',
     page: '/pages/measure/measure'
   },
+  {
+    id: 'dynamic', name: '动态记录', emoji: '📝', type: 'dynamic', group: '身体',
+    page: '/pages/dynamic/dynamic'
+  },
 
   // —— 运动 ——
   {

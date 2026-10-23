@@ -5,7 +5,8 @@
     "pages/summary/summary",
     "pages/custom/custom",
     "pages/weight/weight",
-    "pages/measure/measure"
+    "pages/measure/measure",
+    "pages/dynamic/dynamic"
   ],
   "window": {
     "navigationBarTitleText": "养猪小计划",

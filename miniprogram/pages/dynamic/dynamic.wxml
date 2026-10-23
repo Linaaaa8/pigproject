@@ -1,0 +1,23 @@
+<view class="container">
+  <view class="card">
+    <view class="label">部位</view>
+    <input class="input" placeholder="例如：腰围、胸围、手臂" value="{{part}}" bindinput="onPartInput" placeholder-class="ph" />
+  </view>
+
+  <view class="card">
+    <view class="label">数值</view>
+    <input class="input" placeholder="例如：68" value="{{value}}" bindinput="onValueInput" placeholder-class="ph" />
+  </view>
+
+  <view class="card">
+    <view class="label">记录时间</view>
+    <picker mode="time" value="{{time}}" bindchange="onTimeChange">
+      <view class="time-box">
+        <text class="time-val">{{time}}</text>
+        <text class="time-caret">▾</text>
+      </view>
+    </picker>
+  </view>
+
+  <view class="save-btn" bindtap="save">保存</view>
+</view>
