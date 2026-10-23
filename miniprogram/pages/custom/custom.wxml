@@ -16,5 +16,18 @@
     </picker>
   </view>
 
+  <view class="card">
+    <view class="label">添加备注</view>
+    <view class="imgs">
+      <view wx:for="{{images}}" wx:key="*this" class="img-wrap">
+        <image src="{{item}}" mode="aspectFill" bindtap="previewImage" data-idx="{{index}}" />
+        <view class="img-del" catchtap="removeImage" data-idx="{{index}}">×</view>
+      </view>
+      <view class="upload" bindtap="chooseImage">＋<br />图片</view>
+    </view>
+    <textarea class="note-input" placeholder="写返啲备注（可选）" value="{{note}}"
+              bindinput="onNoteInput" placeholder-class="ph" auto-height maxlength="-1" />
+  </view>
+
   <view class="save-btn" bindtap="save">保存</view>
 </view>

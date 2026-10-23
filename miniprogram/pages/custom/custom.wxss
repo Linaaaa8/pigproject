@@ -29,6 +29,49 @@
 .time-val { font-size: 42rpx; font-weight: 600; color: #EE7B54; }
 .time-caret { font-size: 28rpx; color: #B09A8B; }
 
+.imgs { display: flex; flex-wrap: wrap; gap: 16rpx; margin-bottom: 20rpx; }
+.img-wrap { position: relative; width: 130rpx; height: 130rpx; }
+.img-wrap image { width: 100%; height: 100%; border-radius: 16rpx; }
+.img-del {
+  position: absolute;
+  top: -14rpx;
+  right: -14rpx;
+  width: 42rpx;
+  height: 42rpx;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.55);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28rpx;
+  line-height: 1;
+}
+.upload {
+  width: 130rpx;
+  height: 130rpx;
+  border-radius: 16rpx;
+  border: 2rpx dashed #D8C7BA;
+  color: #B09A8B;
+  font-size: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  line-height: 1.4;
+  background: #FBF8F4;
+}
+.note-input {
+  width: 100%;
+  min-height: 140rpx;
+  font-size: 28rpx;
+  color: #3B2F2A;
+  padding: 20rpx 24rpx;
+  background: #F8F3EE;
+  border-radius: 16rpx;
+  box-sizing: border-box;
+}
+
 .save-btn {
   margin-top: 16rpx;
   text-align: center;
