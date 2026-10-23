@@ -18,3 +18,6 @@ Thumbs.db
 # 日志
 *.log
 npm-debug.log*
+
+# Git 安装目录（误放在项目根目录，勿提交）
+Git/

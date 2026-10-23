@@ -43,6 +43,14 @@ const NODES = [
   {
     id: 'period', name: '来M未', emoji: '🌷', type: 'period', group: '身体'
   },
+  {
+    id: 'weight', name: '称咗未', emoji: '⚖️', type: 'weight', group: '身体',
+    page: '/pages/weight/weight'
+  },
+  {
+    id: 'measure', name: '度一下', emoji: '📏', type: 'measure', group: '身体',
+    page: '/pages/measure/measure'
+  },
 
   // —— 运动 ——
   {
@@ -72,7 +80,8 @@ const NODES = [
 
   // —— 自定义 ——
   {
-    id: 'custom', name: '仲有咩', emoji: '✏️', type: 'custom', group: '自定义'
+    id: 'custom', name: '仲有咩', emoji: '✏️', type: 'custom', group: '自定义',
+    page: '/pages/custom/custom'
   }
 ];
 

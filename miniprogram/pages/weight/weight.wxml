@@ -1,0 +1,21 @@
+<view class="container">
+  <view class="card">
+    <view class="label">体重</view>
+    <view class="weight-row">
+      <input class="weight-input" type="digit" placeholder="0.0" value="{{weight}}" bindinput="onWeightInput" placeholder-class="ph" />
+      <text class="unit">kg</text>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="label">记录时间</view>
+    <picker mode="time" value="{{time}}" bindchange="onTimeChange">
+      <view class="time-box">
+        <text class="time-val">{{time}}</text>
+        <text class="time-caret">▾</text>
+      </view>
+    </picker>
+  </view>
+
+  <view class="save-btn" bindtap="save">保存</view>
+</view>

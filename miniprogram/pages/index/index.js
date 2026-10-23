@@ -114,9 +114,9 @@ Page({
   togglePanel(e) {
     const id = e.currentTarget.dataset.id;
     const node = getNodeById(id);
-    // 自定义节点：进入二级页面
-    if (node && node.type === 'custom') {
-      wx.navigateTo({ url: '/pages/custom/custom' });
+    // 需要跳转二级页面的节点（自定义/称重/围度等）
+    if (node && node.page) {
+      wx.navigateTo({ url: node.page });
       return;
     }
     if (this.data.activeId === id) {

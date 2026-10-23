@@ -1,0 +1,28 @@
+<view class="container">
+  <view class="card">
+    <view class="label">记录时间</view>
+    <picker mode="time" value="{{time}}" bindchange="onTimeChange">
+      <view class="time-box">
+        <text class="time-val">{{time}}</text>
+        <text class="time-caret">▾</text>
+      </view>
+    </picker>
+  </view>
+
+  <view class="card">
+    <view class="label">四肢围度（cm）</view>
+    <view wx:for="{{parts}}" wx:key="key" class="part-row">
+      <view class="part-name">
+        <text class="part-emoji">{{item.emoji}}</text>
+        {{item.name}}
+      </view>
+      <view class="part-input-wrap">
+        <input class="part-input" type="digit" placeholder="0.0"
+               value="{{values[item.key]}}" bindinput="onValueInput" data-key="{{item.key}}" placeholder-class="ph" />
+        <text class="part-unit">cm</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="save-btn" bindtap="save">保存</view>
+</view>
