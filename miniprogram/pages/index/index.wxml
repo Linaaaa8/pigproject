@@ -48,7 +48,7 @@
         <view class="cell-emoji">{{node.emoji}}</view>
         <view class="cell-name">{{node.name}}</view>
         <view class="cell-state" style="{{recorded[node.id] ? 'color:' + item.color + ';' : ''}}">
-          {{recorded[node.id] ? (recorded[node.id].option || '✓') : '点击打卡'}}
+          {{recorded[node.id] ? (recorded[node.id].option || '✓') : (node.type === 'custom' ? '+ 添加' : '点击打卡')}}
         </view>
         <view class="cell-time" wx:if="{{recorded[node.id] && recorded[node.id].time}}">{{recorded[node.id].time}}</view>
       </view>

@@ -1,0 +1,20 @@
+<view class="container">
+  <view class="card">
+    <view class="label">事件名</view>
+    <input class="name-input" placeholder="记低咗咩？" maxlength="{{maxLength}}"
+           value="{{name}}" bindinput="onNameInput" placeholder-class="ph" />
+    <view class="counter">{{name.length}}/{{maxLength}}</view>
+  </view>
+
+  <view class="card">
+    <view class="label">记录时间</view>
+    <picker mode="time" value="{{time}}" bindchange="onTimeChange">
+      <view class="time-box">
+        <text class="time-val">{{time}}</text>
+        <text class="time-caret">▾</text>
+      </view>
+    </picker>
+  </view>
+
+  <view class="save-btn" bindtap="save">保存</view>
+</view>

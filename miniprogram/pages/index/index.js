@@ -48,8 +48,13 @@ Page({
       selTime: fmtTime(now)
     });
     this.login();
-    this.loadToday();
-    this.loadSummary();
+  },
+
+  onShow() {
+    if (this.data.date) {
+      this.loadToday();
+      this.loadSummary();
+    }
   },
 
   buildLabel(d) {
@@ -108,11 +113,16 @@ Page({
 
   togglePanel(e) {
     const id = e.currentTarget.dataset.id;
+    const node = getNodeById(id);
+    // 自定义节点：进入二级页面
+    if (node && node.type === 'custom') {
+      wx.navigateTo({ url: '/pages/custom/custom' });
+      return;
+    }
     if (this.data.activeId === id) {
       this.setData({ activeId: '', activeNode: null });
       return;
     }
-    const node = getNodeById(id);
     this.setData({
       activeId: id,
       activeNode: node,

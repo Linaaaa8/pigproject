@@ -2,7 +2,8 @@
   "pages": [
     "pages/index/index",
     "pages/records/records",
-    "pages/summary/summary"
+    "pages/summary/summary",
+    "pages/custom/custom"
   ],
   "window": {
     "navigationBarTitleText": "养猪小计划",
