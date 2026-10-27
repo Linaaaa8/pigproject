@@ -5,25 +5,63 @@ const db = cloud.database();
 function pad(n) { return n < 10 ? '0' + n : '' + n; }
 function fmtDate(d) { return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()); }
 
+// 节点 -> 分类映射（与前端 config/nodes.js 保持一致）
+const GROUP_OF_NODE = {
+  wake: '作息', sleep: '作息',
+  eat: '饮食', drink: '饮食',
+  poop: '身体', period: '身体', weight: '身体', measure: '身体', dynamic: '身体',
+  baduanjin: '运动', move: '运动',
+  outfit: '穿搭',
+  ddl: '事件',
+  custom: '自定义'
+};
+
 exports.main = async () => {
   const { OPENID } = cloud.getWXContext();
 
   // 总记录数
   const evCount = await db.collection('events').where({ openid: OPENID }).count();
 
-  // 连续打卡天数（有记录的天数连续）
-  const allDates = await db.collection('events')
+  // 拉取 date + nodeId（用于连续打卡、本周天数、分类统计）
+  const all = await db.collection('events')
     .where({ openid: OPENID })
-    .field({ date: true })
+    .field({ date: true, nodeId: true })
     .limit(1000)
     .get();
-  const dateSet = new Set(allDates.data.map((x) => x.date));
+
+  const dateSet = new Set();
+  const now = new Date();
+  const thisMonth = fmtDate(now).slice(0, 7); // "2026-10"
+  const categoryCounts = {};
+
+  all.data.forEach((item) => {
+    if (item.date) {
+      dateSet.add(item.date);
+      if (item.date.indexOf(thisMonth) === 0) {
+        const g = GROUP_OF_NODE[item.nodeId] || '其他';
+        categoryCounts[g] = (categoryCounts[g] || 0) + 1;
+      }
+    }
+  });
+
+  // 连续打卡天数
   let consecutive = 0;
   const d = new Date();
-  if (!dateSet.has(fmtDate(d))) d.setDate(d.getDate() - 1); // 今天没记，从昨天起算
+  if (!dateSet.has(fmtDate(d))) d.setDate(d.getDate() - 1);
   while (dateSet.has(fmtDate(d))) {
     consecutive++;
     d.setDate(d.getDate() - 1);
+  }
+
+  // 本周有记录天数（周一起算）
+  let weekDays = 0;
+  const dayOfWeek = now.getDay() || 7; // 周日=7
+  const monday = new Date(now);
+  monday.setDate(now.getDate() - dayOfWeek + 1);
+  for (let i = 0; i < 7; i++) {
+    const dd = new Date(monday);
+    dd.setDate(monday.getDate() + i);
+    if (dateSet.has(fmtDate(dd))) weekDays++;
   }
 
   // 来M 周期
@@ -68,6 +106,8 @@ exports.main = async () => {
   return {
     totalCount: evCount.total,
     consecutive,
+    weekDays,
+    categoryCounts,
     periodInfo,
     nextPredict,
     ddlList: ddls.data

@@ -1,26 +1,44 @@
 <view class="container">
-  <view class="stats">
-    <view class="stat">
-      <view class="stat-num">{{totalCount}}</view>
-      <view class="stat-label">总记录</view>
-    </view>
-    <view class="stat">
+  <!-- 三个数字卡 -->
+  <view class="stat-cards">
+    <view class="stat-card">
       <view class="stat-num">{{consecutive}}</view>
-      <view class="stat-label">连续天数</view>
+      <view class="stat-label">连续打卡(天)</view>
+    </view>
+    <view class="stat-card">
+      <view class="stat-num">{{totalCount}}</view>
+      <view class="stat-label">累计记录(条)</view>
+    </view>
+    <view class="stat-card">
+      <view class="stat-num">{{weekDays}}</view>
+      <view class="stat-label">本周(天)</view>
     </view>
   </view>
 
+  <!-- 本月分类次数 -->
   <view class="card">
-    <view class="card-title">来M 周期</view>
-    <view class="muted">{{periodInfo || '暂无记录'}}</view>
+    <view class="card-title">本月分类次数</view>
+    <view wx:for="{{categoryList}}" wx:key="group" class="cat-row">
+      <view class="cat-name">{{item.emoji}} {{item.group}}</view>
+      <view class="cat-count">{{item.count}} 次</view>
+    </view>
+    <view wx:if="{{categoryList.length === 0}}" class="empty-tip">本月仲未记录</view>
   </view>
 
+  <!-- 来M周期 -->
   <view class="card">
-    <view class="card-title">进行中 DDL</view>
-    <view wx:if="{{ddlList.length === 0}}" class="muted">暂无</view>
-    <view wx:for="{{ddlList}}" wx:key="_id" class="ddl-item">
-      <view>{{item.content}}</view>
-      <view class="muted">截止 {{item.dueAt}}</view>
+    <view class="card-title">🌷 来M周期</view>
+    <view class="card-text">{{periodInfo || '暂无记录'}}</view>
+    <view class="card-text muted" wx:if="{{nextPredict}}">{{nextPredict}}</view>
+  </view>
+
+  <!-- 进行中 DDL -->
+  <view class="card">
+    <view class="card-title">📌 进行中 DDL</view>
+    <view wx:if="{{ddlList.length === 0}}" class="empty-tip">暂无</view>
+    <view wx:for="{{ddlList}}" wx:key="_id" class="ddl-row">
+      <view class="ddl-name">{{item.content}}</view>
+      <view class="ddl-due">{{item.dueAt}}</view>
     </view>
   </view>
 </view>

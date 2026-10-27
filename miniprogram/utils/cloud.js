@@ -32,8 +32,12 @@ module.exports = {
   getRecords(payload) {
     return call('getRecords', payload);
   },
-  // 汇总统计（总记录/连续打卡/来M周期/DDL）
+  // 汇总统计（总记录/连续打卡/来M周期/DDL/分类次数）
   getSummary() {
     return call('getSummary');
+  },
+  // 某月有记录的日期列表（日历打点）
+  getMonthDates(payload) {
+    return call('getMonthDates', payload);
   }
 };

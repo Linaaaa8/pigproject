@@ -1,16 +1,91 @@
-.container { padding: 24rpx; }
-.empty { text-align: center; padding: 140rpx 0; }
-.empty-title { font-size: 36rpx; font-weight: 600; color: #3B2F2A; margin-bottom: 12rpx; }
+.container { padding: 24rpx 24rpx 40rpx; }
 
-.timeline { display: flex; flex-direction: column; gap: 20rpx; }
-.item {
+/* 月份切换 */
+.month-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   background: #ffffff;
   border-radius: 24rpx;
-  padding: 24rpx 28rpx;
-  box-shadow: 0 6rpx 18rpx rgba(59, 47, 42, 0.04);
+  padding: 24rpx;
+  margin-bottom: 16rpx;
+  box-shadow: 0 6rpx 18rpx rgba(59, 47, 42, 0.05);
 }
-.item-time { font-size: 22rpx; color: #B09A8B; margin-bottom: 10rpx; }
-.item-title { font-size: 30rpx; font-weight: 600; color: #3B2F2A; }
-.item-note { font-size: 26rpx; color: #7A6659; margin-top: 10rpx; }
-.item-imgs { display: flex; flex-wrap: wrap; gap: 12rpx; margin-top: 14rpx; }
-.item-img { width: 160rpx; height: 160rpx; border-radius: 16rpx; }
+.arrow {
+  width: 56rpx;
+  height: 56rpx;
+  border-radius: 50%;
+  background: #F6EEE6;
+  color: #EE7B54;
+  font-size: 36rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+.month-label { font-size: 32rpx; font-weight: 600; color: #3B2F2A; }
+
+/* 连续打卡 */
+.streak {
+  background: #FCE9E0;
+  border-radius: 16rpx;
+  padding: 16rpx;
+  text-align: center;
+  font-size: 26rpx;
+  color: #EE7B54;
+  font-weight: 600;
+  margin-bottom: 16rpx;
+}
+
+/* 星期行 */
+.week-row { display: flex; margin-bottom: 4rpx; }
+.week-cell { flex: 1; text-align: center; font-size: 22rpx; color: #B09A8B; padding: 8rpx 0; }
+
+/* 日历网格 */
+.cal-grid {
+  display: flex;
+  flex-wrap: wrap;
+  background: #ffffff;
+  border-radius: 24rpx;
+  padding: 16rpx 8rpx;
+  box-shadow: 0 6rpx 18rpx rgba(59, 47, 42, 0.05);
+  margin-bottom: 20rpx;
+}
+.day-cell {
+  width: 14.28%;
+  height: 88rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.day-num {
+  width: 56rpx;
+  height: 56rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26rpx;
+  color: #3B2F2A;
+}
+.day-num.today { color: #EE7B54; font-weight: 600; }
+.day-num.selected { background: #EE7B54; color: #ffffff; font-weight: 600; }
+.dot { width: 8rpx; height: 8rpx; border-radius: 50%; background: #5EAE7E; margin-top: 2rpx; }
+
+/* 当天记录 */
+.day-records {
+  background: #ffffff;
+  border-radius: 24rpx;
+  padding: 24rpx;
+  box-shadow: 0 6rpx 18rpx rgba(59, 47, 42, 0.05);
+}
+.day-title { font-size: 26rpx; color: #A08C82; margin-bottom: 12rpx; }
+.empty-tip { text-align: center; font-size: 26rpx; color: #C0B3A8; padding: 30rpx 0; }
+.record-item { padding: 16rpx 0; border-bottom: 1rpx solid #F1E8E0; }
+.record-item:last-child { border-bottom: none; }
+.record-title { font-size: 28rpx; color: #3B2F2A; }
+.record-time { font-size: 22rpx; color: #A08C82; margin-top: 4rpx; }
+.record-note { font-size: 24rpx; color: #7A6659; margin-top: 6rpx; }
+.record-imgs { display: flex; flex-wrap: wrap; gap: 10rpx; margin-top: 10rpx; }
+.record-img { width: 140rpx; height: 140rpx; border-radius: 12rpx; }

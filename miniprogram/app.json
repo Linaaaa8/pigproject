@@ -17,7 +17,7 @@
   },
   "tabBar": {
     "color": "#999999",
-    "selectedColor": "#185FA5",
+    "selectedColor": "#EE7B54",
     "backgroundColor": "#ffffff",
     "borderStyle": "black",
     "list": [
@@ -27,11 +27,11 @@
       },
       {
         "pagePath": "pages/records/records",
-        "text": "全记录"
+        "text": "日历"
       },
       {
         "pagePath": "pages/summary/summary",
-        "text": "汇总"
+        "text": "统计"
       }
     ]
   },
