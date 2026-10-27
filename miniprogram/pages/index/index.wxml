@@ -21,7 +21,7 @@
         </view>
       </view>
     </view>
-    <view class="hero-pig">🐷</view>
+    <image class="hero-pig" src="/assets/capybara.png" mode="aspectFit" />
   </view>
 
   <!-- 日期栏 -->

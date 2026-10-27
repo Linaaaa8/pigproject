@@ -24,7 +24,7 @@
 .hero-stats { display: flex; gap: 52rpx; }
 .hero-num { font-size: 42rpx; font-weight: 600; color: #3B2F2A; line-height: 1.1; }
 .hero-label { font-size: 22rpx; color: #A08C82; margin-top: 6rpx; }
-.hero-pig { font-size: 96rpx; line-height: 1; }
+.hero-pig { width: 72rpx; height: 72rpx; flex-shrink: 0; }
 
 /* 日期栏 */
 .datebar {
