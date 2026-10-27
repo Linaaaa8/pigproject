@@ -1,43 +1,41 @@
 <view class="container">
-  <!-- 成长卡 -->
+  <!-- 成长卡（紧凑单行） -->
   <view class="hero">
-    <view class="hero-left">
+    <view class="hero-pig">🐷</view>
+    <view class="hero-main">
       <view class="hero-title">
         <text class="hero-rank">{{pigTitle}}</text>
         <text class="hero-lv">Lv.{{pigLevel}}</text>
       </view>
-      <view class="hero-stats">
-        <view class="hero-stat">
-          <view class="hero-num">{{todayCount}}</view>
-          <view class="hero-label">今日喂咗</view>
-        </view>
-        <view class="hero-stat">
-          <view class="hero-num">{{consecutive}}</view>
-          <view class="hero-label">连续天数</view>
-        </view>
-        <view class="hero-stat">
-          <view class="hero-num">{{totalCount}}</view>
-          <view class="hero-label">累计记录</view>
-        </view>
+      <view class="hero-sub">今日喂咗自己</view>
+    </view>
+    <view class="hero-stats">
+      <view class="hero-stat">
+        <view class="hero-num">{{todayCount}}</view>
+        <view class="hero-label">今日</view>
+      </view>
+      <view class="hero-stat">
+        <view class="hero-num">{{consecutive}}</view>
+        <view class="hero-label">连续</view>
+      </view>
+      <view class="hero-stat">
+        <view class="hero-num">{{totalCount}}</view>
+        <view class="hero-label">累计</view>
       </view>
     </view>
-    <image class="hero-pig" src="/assets/capybara.png" mode="aspectFit" />
   </view>
 
-  <!-- 日期栏 -->
+  <!-- 日期栏（单行） -->
   <view class="datebar">
     <view class="arrow" bindtap="prevDay">‹</view>
-    <view class="dateinfo">
-      <view class="datetext">{{dateLabel}}</view>
-      <view class="muted">点日期两边可以补录</view>
-    </view>
+    <view class="datetext">{{dateLabel}}</view>
     <view class="arrow" bindtap="nextDay">›</view>
   </view>
 
   <!-- 分类节点网格 -->
   <view wx:for="{{groups}}" wx:key="group" class="group">
     <view class="group-title">
-      <text class="group-emoji">{{item.emoji}}</text>
+      <text class="group-dot" style="background:{{item.color}};"></text>
       {{item.group}}
     </view>
     <view class="grid">
@@ -48,9 +46,8 @@
         <view class="cell-emoji">{{node.emoji}}</view>
         <view class="cell-name">{{node.name}}</view>
         <view class="cell-state" wx:if="{{recorded[node.id]}}" style="color:{{item.color}};">
-          {{recorded[node.id].option || '✓'}}
+          {{recorded[node.id].option}}{{recorded[node.id].time ? ' ' + recorded[node.id].time : ''}}
         </view>
-        <view class="cell-time" wx:if="{{recorded[node.id] && recorded[node.id].time}}">{{recorded[node.id].time}}</view>
       </view>
     </view>
 
@@ -100,15 +97,6 @@
       </view>
 
       <view class="save-btn" bindtap="save">保存</view>
-    </view>
-  </view>
-
-  <!-- 底部统计横幅 -->
-  <view class="banner">
-    <view class="banner-num">{{todayCount}}<text class="banner-unit"> 次</text></view>
-    <view class="banner-text">
-      <view class="banner-title">今日喂咗自己</view>
-      <view class="banner-sub">连续打卡 {{consecutive}} 天 · 累计 {{totalCount}} 条</view>
     </view>
   </view>
 </view>
