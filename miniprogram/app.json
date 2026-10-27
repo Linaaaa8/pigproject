@@ -23,15 +23,21 @@
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "首页"
+        "text": "首页",
+        "iconPath": "assets/tabbar/home-gray.png",
+        "selectedIconPath": "assets/tabbar/home-orange.png"
       },
       {
         "pagePath": "pages/records/records",
-        "text": "日历"
+        "text": "日历",
+        "iconPath": "assets/tabbar/calendar-gray.png",
+        "selectedIconPath": "assets/tabbar/calendar-orange.png"
       },
       {
         "pagePath": "pages/summary/summary",
-        "text": "统计"
+        "text": "统计",
+        "iconPath": "assets/tabbar/chart-gray.png",
+        "selectedIconPath": "assets/tabbar/chart-orange.png"
       }
     ]
   },
