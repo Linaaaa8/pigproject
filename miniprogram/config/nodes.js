@@ -1,4 +1,4 @@
-// 节点配置：生活节点的唯一数据源（首页/全记录/汇总共用）
+// 节点配置：生活节点的唯一数据源（首页/日历/统计共用）
 // type 含义：
 //   status  状态打卡 —— 记选项 + 时:分
 //   count   频次     —— 记选项 + 时:分 + 备注文字
@@ -6,9 +6,13 @@
 //   period  周期区间 —— 记开始日/结束日（来M）
 //   event   事件     —— 自定义文本 + 截止时间 + 提醒（DDL）
 //   custom  自定义   —— 用户自建节点
+//
+// 分组（按首页排布稿合并为两大组）：
+//   作息 = 训醒/训着 + 食/饮
+//   身体 = 屙/来M/称重/围度/动态 + 运动 + 穿搭 + 事件 + 自定义
 
 const NODES = [
-  // —— 作息 ——
+  // —— 作息（含饮食）——
   {
     id: 'wake', name: '训醒未', emoji: '🌞', type: 'status', group: '作息',
     options: ['自然醒', '闹钟醒', '赖床', '半夜醒过', '训得唔好'],
@@ -19,22 +23,20 @@ const NODES = [
     options: ['好快训着', '一般', '训唔着', '半夜醒', '未训'],
     defaultOption: '好快训着'
   },
-
-  // —— 饮食 ——
   {
-    id: 'eat', name: '食咗未', emoji: '🍚', type: 'count', group: '饮食',
+    id: 'eat', name: '食咗未', emoji: '🍚', type: 'count', group: '作息',
     options: ['早餐', '午餐', '晚餐', '加餐', '食咗少少', '未食'],
     defaultOption: '晚餐',
     notePlaceholder: '备注：食咗咩？'
   },
   {
-    id: 'drink', name: '饮咗未', emoji: '🥤', type: 'count', group: '饮食',
+    id: 'drink', name: '饮咗未', emoji: '🥤', type: 'count', group: '作息',
     options: ['1 杯', '2 杯', '3 杯', '4 杯+', '未饮'],
     defaultOption: '1 杯',
     notePlaceholder: '备注：饮咗咩？'
   },
 
-  // —— 身体 ——
+  // —— 身体（含运动/穿搭/事件/自定义）——
   {
     id: 'poop', name: '屙咗未', emoji: '🚽', type: 'status', group: '身体',
     options: ['顺畅', '一般', '便秘', '肚屙', '未屙'],
@@ -55,36 +57,28 @@ const NODES = [
     id: 'dynamic', name: '动态记录', emoji: '📝', type: 'dynamic', group: '身体',
     page: '/pages/dynamic/dynamic'
   },
-
-  // —— 运动 ——
   {
-    id: 'baduanjin', name: '八段锦', emoji: '🧘', type: 'count', group: '运动',
+    id: 'baduanjin', name: '八段锦', emoji: '🧘', type: 'count', group: '身体',
     options: ['1 遍', '2 遍', '3 遍', '未做'],
     defaultOption: '1 遍',
     notePlaceholder: '备注'
   },
   {
-    id: 'move', name: '郁下', emoji: '🏃', type: 'count', group: '运动',
+    id: 'move', name: '郁下', emoji: '🏃', type: 'count', group: '身体',
     options: ['散步', '跑步', '拉伸', '其他运动', '未郁'],
     defaultOption: '散步',
     notePlaceholder: '备注：做咗咩运动？'
   },
-
-  // —— 穿搭 ——
   {
-    id: 'outfit', name: '几靓呀', emoji: '👗', type: 'photo', group: '穿搭',
+    id: 'outfit', name: '几靓呀', emoji: '👗', type: 'photo', group: '身体',
     notePlaceholder: '备注：今日着咗咩风格？'
   },
-
-  // —— 事件 ——
   {
-    id: 'ddl', name: 'DDL了', emoji: '📌', type: 'event', group: '事件',
+    id: 'ddl', name: 'DDL了', emoji: '📌', type: 'event', group: '身体',
     contentPlaceholder: '事件：要交咩？'
   },
-
-  // —— 自定义 ——
   {
-    id: 'custom', name: '仲有咩', emoji: '✏️', type: 'custom', group: '自定义',
+    id: 'custom', name: '仲有咩', emoji: '✏️', type: 'custom', group: '身体',
     page: '/pages/custom/custom'
   }
 ];
@@ -92,12 +86,7 @@ const NODES = [
 // 分组主题色（温暖养成风）：主色 + 浅色底 + 组图标
 const GROUP_COLORS = {
   '作息': { color: '#E89B3C', light: '#FBF0DC', emoji: '🌤' },
-  '饮食': { color: '#EE7B54', light: '#FCE9E0', emoji: '🍚' },
-  '身体': { color: '#E8708A', light: '#FBE4EA', emoji: '💗' },
-  '运动': { color: '#5EAE7E', light: '#E4F2E9', emoji: '🏃' },
-  '穿搭': { color: '#8E7CC3', light: '#EDE8F7', emoji: '👗' },
-  '事件': { color: '#5B8FD6', light: '#E5EDF8', emoji: '📌' },
-  '自定义': { color: '#9A8B84', light: '#F0EBE6', emoji: '✏️' }
+  '身体': { color: '#E8708A', light: '#FBE4EA', emoji: '💗' }
 };
 
 // 按 group 分组，供首页分区渲染（附带主题色）
